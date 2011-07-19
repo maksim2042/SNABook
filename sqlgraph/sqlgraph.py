@@ -75,7 +75,7 @@ class SqlGraph(object):
 
     @cursored
     def get_node_data(self, node, cursor=None):
-        result = cursor.execute('select * from %s_nodes where node=?'%self.name, node)
+        result = cursor.execute('select * from %s_nodes where node=?'%self.name, (node,))
         for row in result:
             return row[0]
         else:
@@ -87,7 +87,7 @@ class SqlGraph(object):
         for row in result:
             return row[0]
         else:
-            raise Exception('Node %s is not in graph.' % node)
+            raise Exception('Edge %s:%s is not in graph.' % (fromnode, tonode))
 
     def from_nx(self, G):
         self.name = _encode(G.name)
