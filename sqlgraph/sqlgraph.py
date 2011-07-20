@@ -56,13 +56,13 @@ class SqlGraph(object):
     @cursored
     def add_node(self, node, attr_dict=None, cursor=None):
         attributes = simplejson.dumps(attr_dict)
-        cursor.execute('''insert into %s_nodes (node, attributes)
+        cursor.execute('''insert or replace into %s_nodes (node, attributes)
             values(?,?)''' % self.name, (node, attributes))
 
     @cursored
     def add_edge(self, fromnode, tonode, attr_dict=None, cursor=None):
         attributes = simplejson.dumps(attr_dict)
-        cursor.execute('''insert into %s_edges (efrom, eto, attributes)
+        cursor.execute('''insert or replace into %s_edges (efrom, eto, attributes)
             values(?,?,?)''' % self.name, (fromnode, tonode, attributes))
 
     @cursored
