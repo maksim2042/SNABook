@@ -13,7 +13,11 @@ def plot_multimode(m,layout=net.spring_layout, type_string='type', with_labels=T
     #Now we need to find groups of nodes that need to be colored differently
     nodesets=defaultdict(list)
     for n in m.nodes():
-        t=m.node[n][type_string]
+        try:
+            t=m.node[n][type_string]
+        except KeyError:
+            ##this happens if a node doesn't have a type_string -- give it a None value
+            t='None'
         nodesets[t].append(n)
         
     ## Draw each group of nodes separately, using its own color settings
