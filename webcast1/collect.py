@@ -23,7 +23,9 @@ def connect():
 	if api and api.verity_credentials():
 		return api
 	else:
-		raise "Login failed."
+		print("Login failed.")
+
+
 
 query = '"someScreenName" OR "#sometag"' # a valid Twitter search query
 

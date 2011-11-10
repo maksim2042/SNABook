@@ -29,6 +29,16 @@ def add_or_inc_edge(g,f,t):
         g[f][t]['weight']+=1
     else:
         g.add_edge(f,t,weight=1)
+        
+def trim_edges(g, weight=1):
+    """
+    Remove edges with weights less then a threshold parameter ("weight")
+    """
+    g2=net.Graph()
+    for f, to, edata in g.edges(data=True):
+        if edata['weight'] > weight:
+            g2.add_edge(f,to,edata)
+    return g2
 
 file="data.json"
 i = open(file,'rb')
@@ -50,7 +60,7 @@ for tweet in i:
             alter=rt['screen_name']
             retweets.add_edge(author,alter)
         
-        tags=[str.lower(tag['text']) for tag in hashtags]
+        tags=[tag['text'].lower() for tag in hashtags]
         for t1 in tags:
             for t2 in tags:
                 if t1 is not t2:
@@ -60,35 +70,3 @@ for tweet in i:
         continue
     
     
-    place=''
-    try:
-        place=js['coordinates']
-    except KeyError:
-        pass      
-    try:        
-        if place is None: place=js['geo']
-    except KeyError:
-        pass  
-    try:    
-        if place is None: place=js['place']
-    except KeyError:
-        pass
-    
-    if place is not None:   
-        print place    
-        if 'bounding_box' in place:
-            if place['bounding_box'] is not None:
-                for p in place['bounding_box']['coordinates']:
-                    for point in p:
-                        points.append(point)
-                
-        if 'coordinates' in place:
-            points.append(place['coordinates'])
-    
-
-
-hm = heatmap.Heatmap()
-hm.heatmap(points, "hm.png", dotsize=10)
-hm.saveKML("geo.kml")
-
-points =[]
