@@ -15,7 +15,7 @@ spatial=net.Graph()
 import geocoder
 geo = geocoder.geocoder()
 
-with tweetstream.FilterStream("maksim2042", "ligovka24", track=words) as stream:
+with tweetstream.FilterStream("<your user ID>", "<password>", track=words) as stream:
 	for js in stream:
 		
 	### process tweet to extract information
@@ -39,7 +39,7 @@ with tweetstream.FilterStream("maksim2042", "ligovka24", track=words) as stream:
 				for t2 in tags:
 					if t1 is not t2:
 						add_or_inc_edge(hashtag_net,t1,t2)      
-		except KeyError:
+		except :
 			print ':-('
 			continue
 
