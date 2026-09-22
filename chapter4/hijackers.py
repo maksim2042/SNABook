@@ -41,4 +41,4 @@ cc = components[0]
 mm.plot_multimode(cc,type_string='flight')
 
 # run triadic analysis
-census, node_census = triadic.triadic_census(cc2)
+census, node_census = triadic.triadic_census(cc)

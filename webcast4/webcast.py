@@ -11,7 +11,7 @@ for line in can_file:
     party=line[47:50]
     inc=line[56]
     zip=line[147:152]
-    candidates[cid]={'name':name,'party':party,'type':ctype,'inc':inc,'zip':zip}
+    candidates[cid]={'name':name,'party':party,'type':inc,'inc':inc,'zip':zip}
 
 [(k,pacs[k]) for k in pacs.keys()[:10]]
 
@@ -27,7 +27,7 @@ for line in pac_file:
     pid=line[0:9]
     ctype=line[0]
     name=line[9:99].strip()
-    party=line[232-235]
+    party=line[232:235]
     ctype=line[231]
     zip=line[225:230]
     pacs[pid]={'name':name,'party':party,'type':ctype,'zip':zip}

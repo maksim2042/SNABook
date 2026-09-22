@@ -68,7 +68,7 @@ class geocoder(object):
             
             if geo['type']=='Point':
                 lat=float(geo['coordinates'][0])
-                lat=float(geo['coordinates'][1])
+                lon=float(geo['coordinates'][1])
                 return self._reverse_geocode(lat,lon)
         except:
             return None
@@ -90,7 +90,7 @@ class geocoder(object):
 
     def _reverse_geocode(self,lat,lon):
         try :
-            place=yy.reverse(float(lat),float(lon))
+            place=self.yy.reverse((float(lat),float(lon)))
             return place
         except:
             l.debug('reverse geo FAIL')

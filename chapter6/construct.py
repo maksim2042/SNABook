@@ -57,9 +57,9 @@ class Person(object):
         
         ## roll dice and decide to communicate with similar (0.6), dissimilar(0.3) or random (0.1)
         roll=r.random()
-        if r <= 0.1 or len(neighbors)==0:
+        if roll <= 0.1 or len(neighbors)==0:
             partner=r.choice(g.nodes())
-        elif r<=0.1:
+        elif roll<=0.4:
             partner=self._roulette_choice(neighbors,values,inverse=True)
         else:
             partner=self._roulette_choice(neighbors,values,inverse=False)
