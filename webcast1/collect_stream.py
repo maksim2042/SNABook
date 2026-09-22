@@ -25,7 +25,7 @@ class MyStreamListener(tweepy.StreamListener):
     	   return True # or False if you want the stream to disconnect
 
 
-def start_stream(username, password, listener, follow=(), track=():
+def start_stream(username, password, listener, follow=(), track=()):
 	'''	
          follow: list of users to follow
 		track: list of keywords to track
